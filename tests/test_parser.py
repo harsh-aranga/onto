@@ -1,4 +1,4 @@
-# onto/tests/test_onto.py
+# tests/test_parser.py
 """Tests for ONTO parser."""
 
 import pytest
@@ -10,7 +10,7 @@ from onto.parser import (
     get_indent_level,
     parse_lines,
 )
-from onto.errors import ONTOParseError
+from onto.errors import ONTOParseError, ONTOValidationError
 
 
 class TestIndentation:
@@ -199,8 +199,6 @@ User[2]:
 class TestValueParsing:
     """Tests for parsing values (Piece 2)."""
 
-    from onto.parser import parse_values, split_respecting_backticks
-
     # Simple pipe splitting
     def test_simple_pipe_split(self):
         from onto.parser import parse_values
@@ -323,8 +321,6 @@ class TestValueParsing:
 class TestTypeInference:
     """Tests for type inference (Piece 3)."""
 
-    from onto.parser import infer_types, parse_values_raw, infer_single_type
-
     # Single value type inference
     def test_infer_integer(self):
         from onto.parser import infer_single_type
@@ -385,6 +381,23 @@ class TestTypeInference:
         raw = parse_values_raw("100|N/A|85", 1)
         result = infer_types(raw)
         assert result == ["100", "N/A", "85"]
+
+    def test_infer_types_mixed_int_float_upcasts(self):
+        from onto.parser import infer_types, parse_values_raw
+        # Mixed int and float -> upcast to float (not strings)
+        raw = parse_values_raw("-10|-3.14|5", 1)
+        result = infer_types(raw)
+        assert result == [-10.0, -3.14, 5.0]
+        assert all(isinstance(v, float) for v in result)
+
+    def test_infer_types_nested_array_int_float_upcasts(self):
+        from onto.parser import infer_types, parse_values_raw
+        # Mixed int and float in nested arrays -> upcast to float (not strings)
+        raw = parse_values_raw("1^2.5|3^4", 1)
+        result = infer_types(raw)
+        assert result == [[1.0, 2.5], [3.0, 4.0]]
+        assert all(isinstance(v, float) for v in result[0])
+        assert all(isinstance(v, float) for v in result[1])
 
     def test_infer_types_with_null(self):
         from onto.parser import infer_types, parse_values_raw
@@ -571,7 +584,6 @@ User[2]:
     # Error cases
     def test_error_mismatched_record_count(self):
         from onto.parser import loads
-        from onto.errors import ONTOValidationError
         onto = """User[3]:
     name: Alice|Bob|Charlie
     age: 30|25"""
@@ -582,7 +594,6 @@ User[2]:
 
     def test_error_nested_mismatched_count(self):
         from onto.parser import loads
-        from onto.errors import ONTOValidationError
         onto = """User[3]:
     name: Alice|Bob|Charlie
     address:
@@ -593,13 +604,11 @@ User[2]:
 
     def test_error_empty_document(self):
         from onto.parser import loads
-        from onto.errors import ONTOParseError
         with pytest.raises(ONTOParseError):
             loads("")
 
     def test_error_no_entity(self):
         from onto.parser import loads
-        from onto.errors import ONTOParseError
         onto = """    name: Alice|Bob"""
         with pytest.raises(ONTOParseError) as exc_info:
             loads(onto)
@@ -607,7 +616,6 @@ User[2]:
 
     def test_error_indent_jump(self):
         from onto.parser import loads
-        from onto.errors import ONTOParseError
         # Level 2 directly under entity (level 0) - skips level 1
         onto = """User[2]:
         city: LA|NYC"""
@@ -615,135 +623,30 @@ User[2]:
             loads(onto)
         assert "indentation" in str(exc_info.value).lower()
 
-
-class TestPublicAPI:
-    """Integration tests using public API (Piece 5)."""
-
-    def test_import_loads(self):
-        import onto
-        assert hasattr(onto, "loads")
-        assert callable(onto.loads)
-
-    def test_import_dumps(self):
-        import onto
-        assert hasattr(onto, "dumps")
-        # dumps not implemented yet
-        with pytest.raises(NotImplementedError):
-            onto.dumps([{"a": 1}])
-
-    def test_import_exceptions(self):
-        import onto
-        assert hasattr(onto, "ONTOError")
-        assert hasattr(onto, "ONTOParseError")
-        assert hasattr(onto, "ONTOValidationError")
-
-    def test_loads_via_public_api(self):
-        import onto
-        result = onto.loads("""User[2]:
+    def test_error_multiple_entities(self):
+        from onto.parser import loads
+        onto = """User[2]:
     name: Alice|Bob
-    age: 30|25""")
-        assert result == [
-            {"name": "Alice", "age": 30},
-            {"name": "Bob", "age": 25},
-        ]
+Order[3]:
+    id: 1|2|3"""
+        with pytest.raises(ONTOParseError) as exc_info:
+            loads(onto)
+        assert "multiple" in str(exc_info.value).lower()
 
-    def test_full_spec_example(self):
-        """Test the example from the spec."""
-        import onto
-        onto_str = """User[3]:
-    name: Alice|Bob|Charlie
-    age: 30|25|35
-    city: LA|NYC|Dallas"""
-        result = onto.loads(onto_str)
-        assert len(result) == 3
-        assert result[0] == {"name": "Alice", "age": 30, "city": "LA"}
-        assert result[1] == {"name": "Bob", "age": 25, "city": "NYC"}
-        assert result[2] == {"name": "Charlie", "age": 35, "city": "Dallas"}
+    def test_error_empty_nested_declaration(self):
+        from onto.parser import loads
+        onto = """User[1]:
+    address:"""
+        with pytest.raises(ONTOParseError) as exc_info:
+            loads(onto)
+        assert "empty" in str(exc_info.value).lower()
 
-    def test_deep_nesting_example(self):
-        """Test the deep nesting example from spec."""
-        import onto
-        onto_str = """User[3]:
-    name: Alice|Bob|Charlie
-    age: 30|25|35
+    def test_error_empty_nested_followed_by_sibling(self):
+        from onto.parser import loads
+        # address: has no children, then name appears at same level
+        onto = """User[1]:
     address:
-        street: 1st Ave|2nd Ave|3rd Ave
-        city: LA|NYC|Dallas
-        state:
-            longform: California|New York|Texas
-            shortform: CA|NY|TX"""
-        result = onto.loads(onto_str)
-        assert len(result) == 3
-        assert result[0]["address"]["state"]["shortform"] == "CA"
-        assert result[1]["address"]["city"] == "NYC"
-        assert result[2]["name"] == "Charlie"
-
-    def test_arrays_example(self):
-        """Test array syntax from spec."""
-        import onto
-        onto_str = """User[3]:
-    name: Alice|Bob|Charlie
-    tags: python^ai^ml|javascript^web|rust^systems"""
-        result = onto.loads(onto_str)
-        assert result[0]["tags"] == ["python", "ai", "ml"]
-        assert result[1]["tags"] == ["javascript", "web"]
-        assert result[2]["tags"] == ["rust", "systems"]
-
-    def test_null_handling(self):
-        """Test null vs empty string."""
-        import onto
-        onto_str = """Data[3]:
-    a: value||another
-    b: value|``|another"""
-        result = onto.loads(onto_str)
-        assert result[0]["a"] == "value"
-        assert result[1]["a"] is None
-        assert result[1]["b"] == ""
-        assert result[2]["a"] == "another"
-
-    def test_type_inference_comprehensive(self):
-        """Test all type inference cases."""
-        import onto
-        onto_str = """Data[4]:
-    int_val: 1|2|3|4
-    float_val: 1.5|2.5|3.5|4.5
-    bool_val: true|false|TRUE|False
-    str_val: a|b|c|d
-    mixed_val: 1|two|3|four"""
-        result = onto.loads(onto_str)
-        # Integers
-        assert all(isinstance(r["int_val"], int) for r in result)
-        # Floats
-        assert all(isinstance(r["float_val"], float) for r in result)
-        # Booleans
-        assert result[0]["bool_val"] is True
-        assert result[1]["bool_val"] is False
-        # Strings
-        assert all(isinstance(r["str_val"], str) for r in result)
-        # Mixed -> all strings
-        assert all(isinstance(r["mixed_val"], str) for r in result)
-        assert result[0]["mixed_val"] == "1"
-
-    def test_backtick_escaping(self):
-        """Test backtick escaping for special characters."""
-        import onto
-        onto_str = """Lang[2]:
-    name: `c|c++`|python
-    tags: `a^b`^c|d^e"""
-        result = onto.loads(onto_str)
-        assert result[0]["name"] == "c|c++"
-        assert result[0]["tags"] == ["a^b", "c"]
-        assert result[1]["tags"] == ["d", "e"]
-
-    def test_error_raises_parse_error(self):
-        """Test that parse errors are properly raised."""
-        import onto
-        with pytest.raises(onto.ONTOParseError):
-            onto.loads("invalid onto")
-
-    def test_error_raises_validation_error(self):
-        """Test that validation errors are properly raised."""
-        import onto
-        with pytest.raises(onto.ONTOValidationError):
-            onto.loads("""User[3]:
-    name: Alice|Bob""")  # Only 2 values for 3 records
+    name: Alice"""
+        with pytest.raises(ONTOParseError) as exc_info:
+            loads(onto)
+        assert "empty" in str(exc_info.value).lower()

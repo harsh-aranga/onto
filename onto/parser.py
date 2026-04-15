@@ -342,7 +342,8 @@ def harmonize_types(type_value_pairs: list[tuple[type, any]]) -> list:
     Harmonize types across a list of values.
 
     If all non-null values share the same type, keep that type.
-    If mixed types, convert everything to strings.
+    If mixed int/float, upcast to float (numeric compatibility).
+    If mixed with incompatible types (e.g., int + str), convert everything to strings.
 
     Args:
         type_value_pairs: List of (type, value) tuples
@@ -359,6 +360,10 @@ def harmonize_types(type_value_pairs: list[tuple[type, any]]) -> list:
     # If only one non-null type (or no types), keep as-is
     if len(non_null_types) <= 1:
         return [v for _, v in type_value_pairs]
+
+    # If only int and float, upcast to float (numeric compatibility)
+    if non_null_types == {int, float}:
+        return [float(v) if v is not None else None for _, v in type_value_pairs]
 
     # Mixed types: convert everything to string (except null)
     result = []
@@ -417,8 +422,9 @@ def infer_types(values: list[str | list[str]]) -> list:
         if t is not type(None):
             non_null_types.add(t)
 
-    # Determine if we need to stringify
-    needs_stringify = len(non_null_types) > 1
+    # Determine harmonization strategy (same logic as harmonize_types)
+    numeric_compatible = non_null_types == {int, float}
+    needs_stringify = len(non_null_types) > 1 and not numeric_compatible
 
     # Rebuild result with harmonized types
     result = []
@@ -427,13 +433,17 @@ def infer_types(values: list[str | list[str]]) -> list:
             t, v = data
             if v is None:
                 result.append(None)
+            elif numeric_compatible and t in (int, float):
+                result.append(float(v))
             elif needs_stringify:
-                result.append(str(v) if v is not None else None)
+                result.append(str(v))
             else:
                 result.append(v)
         else:
             # Array
-            if needs_stringify:
+            if numeric_compatible:
+                arr = [float(v) if v is not None else None for _, v in data]
+            elif needs_stringify:
                 arr = [str(v) if v is not None else None for _, v in data]
             else:
                 arr = [v for _, v in data]
@@ -519,13 +529,21 @@ def build_structure(parsed_lines: list[ParsedLine]) -> tuple[str, int, dict]:
     record_count = first.record_count
 
     # Build nested structure using indentation stack
-    # Stack holds (indent_level, field_path_prefix)
+    # Stack holds (indent_level, field_path_prefix, line_number, is_nested)
     # field_path_prefix is a list of field names leading to current level
 
     fields = {}  # flat dict: tuple(path...) -> typed values
-    indent_stack = [(0, [])]  # (indent_level, path_prefix)
+    indent_stack = [(0, [], 0, False)]  # (indent_level, path_prefix, line_number, is_nested_decl)
 
     for line in parsed_lines[1:]:
+        # Reject multiple entity declarations
+        if line.line_type == LineType.ENTITY:
+            raise ONTOParseError(
+                "Multiple entity declarations not supported. "
+                "ONTO loads() returns a single entity.",
+                line.line_number
+            )
+
         indent = line.indent_level
 
         # Validate: indent can only increase by 1 level at a time
@@ -537,19 +555,32 @@ def build_structure(parsed_lines: list[ParsedLine]) -> tuple[str, int, dict]:
             )
 
         # Pop stack until we find parent level
+        # Also check for empty nested declarations being popped
         while indent_stack and indent_stack[-1][0] >= indent:
-            indent_stack.pop()
+            popped = indent_stack.pop()
+            popped_indent, popped_path, popped_line, was_nested = popped
+            if was_nested:
+                # This nested declaration had no children
+                raise ONTOParseError(
+                    f"Empty nested declaration '{'.'.join(popped_path)}' has no fields",
+                    popped_line
+                )
 
         if not indent_stack:
             # Should not happen with valid indentation
             raise ONTOParseError("Invalid indentation structure", line.line_number)
 
-        parent_path = indent_stack[-1][1]
+        # Mark parent as having children (no longer empty)
+        parent_indent, parent_path, parent_line, parent_was_nested = indent_stack[-1]
+        if parent_was_nested:
+            # Replace with non-nested marker since it now has children
+            indent_stack[-1] = (parent_indent, parent_path, parent_line, False)
+
         current_path = parent_path + [line.field_name]
 
         if line.line_type == LineType.NESTED:
-            # Push onto stack for children
-            indent_stack.append((indent, current_path))
+            # Push onto stack for children (marked as nested, needs children)
+            indent_stack.append((indent, current_path, line.line_number, True))
 
         elif line.line_type == LineType.FIELD:
             # Parse and type-infer values
@@ -566,6 +597,15 @@ def build_structure(parsed_lines: list[ParsedLine]) -> tuple[str, int, dict]:
 
             # Store with path as key
             fields[tuple(current_path)] = typed_values
+
+    # Check for any remaining empty nested declarations at end of document
+    for item in indent_stack[1:]:  # Skip the root level
+        _, path, line_num, was_nested = item
+        if was_nested:
+            raise ONTOParseError(
+                f"Empty nested declaration '{'.'.join(path)}' has no fields",
+                line_num
+            )
 
     return entity_name, record_count, fields
 
