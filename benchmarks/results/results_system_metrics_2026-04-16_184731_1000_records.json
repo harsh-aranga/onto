@@ -1,0 +1,29 @@
+{
+  "dataset": "system_metrics",
+  "records": 1000,
+  "timestamp": "2026-04-16T18:47:31.257799",
+  "formats": {
+    "json": {
+      "tokens": 78710,
+      "chars": 200064
+    },
+    "yaml": {
+      "tokens": 77709,
+      "chars": 188064
+    },
+    "toon": {
+      "tokens": 38381,
+      "chars": 71808
+    },
+    "onto": {
+      "tokens": 38752,
+      "chars": 70210
+    }
+  },
+  "reduction_vs_json": {
+    "yaml": "1.3%",
+    "toon": "51.2%",
+    "onto": "50.8%"
+  },
+  "onto_vs_toon": "-1.0%"
+}

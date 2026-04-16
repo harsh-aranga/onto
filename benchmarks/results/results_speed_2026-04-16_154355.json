@@ -1,0 +1,571 @@
+{
+  "results": {
+    "model": "qwen2.5:7b-instruct-q4_K_M",
+    "records": 1000,
+    "runs": 5,
+    "use_system_prompt": false,
+    "timestamp": "2026-04-16T15:39:44.133113",
+    "runs_data": [
+      {
+        "run_num": 0,
+        "seed": 1000,
+        "scenarios": [
+          {
+            "format": "json",
+            "dataset": "iot_telemetry",
+            "ttft": 5.381495800000266,
+            "total_time": 5.977457400003914,
+            "input_tokens": 63753,
+            "prompt_tokens": 63772,
+            "output_chars": 210,
+            "error": null,
+            "seed": 1000
+          },
+          {
+            "format": "yaml",
+            "dataset": "iot_telemetry",
+            "ttft": 5.223123799994937,
+            "total_time": 5.791880499993567,
+            "input_tokens": 78751,
+            "prompt_tokens": 78770,
+            "output_chars": 236,
+            "error": null,
+            "seed": 1000
+          },
+          {
+            "format": "toon",
+            "dataset": "iot_telemetry",
+            "ttft": 5.313412699993933,
+            "total_time": 6.201924299995881,
+            "input_tokens": 79698,
+            "prompt_tokens": 79718,
+            "output_chars": 223,
+            "error": null,
+            "seed": 1000
+          },
+          {
+            "format": "onto",
+            "dataset": "iot_telemetry",
+            "ttft": 4.8218364999920595,
+            "total_time": 5.237855599989416,
+            "input_tokens": 42792,
+            "prompt_tokens": 42812,
+            "output_chars": 156,
+            "error": null,
+            "seed": 1000
+          },
+          {
+            "format": "json",
+            "dataset": "system_metrics",
+            "ttft": 5.157267200003844,
+            "total_time": 5.767736300011165,
+            "input_tokens": 62674,
+            "prompt_tokens": 62694,
+            "output_chars": 180,
+            "error": null,
+            "seed": 1000
+          },
+          {
+            "format": "yaml",
+            "dataset": "system_metrics",
+            "ttft": 5.371454699998139,
+            "total_time": 6.541232600007788,
+            "input_tokens": 77672,
+            "prompt_tokens": 77691,
+            "output_chars": 275,
+            "error": null,
+            "seed": 1000
+          },
+          {
+            "format": "toon",
+            "dataset": "system_metrics",
+            "ttft": 4.920018799995887,
+            "total_time": 5.462410799998906,
+            "input_tokens": 38340,
+            "prompt_tokens": 38360,
+            "output_chars": 188,
+            "error": null,
+            "seed": 1000
+          },
+          {
+            "format": "onto",
+            "dataset": "system_metrics",
+            "ttft": 4.907856100006029,
+            "total_time": 5.352265800000168,
+            "input_tokens": 38715,
+            "prompt_tokens": 38735,
+            "output_chars": 144,
+            "error": null,
+            "seed": 1000
+          }
+        ]
+      },
+      {
+        "run_num": 1,
+        "seed": 1001,
+        "scenarios": [
+          {
+            "format": "json",
+            "dataset": "iot_telemetry",
+            "ttft": 5.141376100000343,
+            "total_time": 5.692575299995951,
+            "input_tokens": 63756,
+            "prompt_tokens": 63775,
+            "output_chars": 192,
+            "error": null,
+            "seed": 1001
+          },
+          {
+            "format": "yaml",
+            "dataset": "iot_telemetry",
+            "ttft": 5.374962000001688,
+            "total_time": 6.028183400005219,
+            "input_tokens": 78754,
+            "prompt_tokens": 78773,
+            "output_chars": 260,
+            "error": null,
+            "seed": 1001
+          },
+          {
+            "format": "toon",
+            "dataset": "iot_telemetry",
+            "ttft": 5.467466699992656,
+            "total_time": 6.5637707999994745,
+            "input_tokens": 79699,
+            "prompt_tokens": 79719,
+            "output_chars": 223,
+            "error": null,
+            "seed": 1001
+          },
+          {
+            "format": "onto",
+            "dataset": "iot_telemetry",
+            "ttft": 5.005305500002578,
+            "total_time": 5.517435400004615,
+            "input_tokens": 42795,
+            "prompt_tokens": 42815,
+            "output_chars": 174,
+            "error": null,
+            "seed": 1001
+          },
+          {
+            "format": "json",
+            "dataset": "system_metrics",
+            "ttft": 5.218678400007775,
+            "total_time": 5.906529200001387,
+            "input_tokens": 62695,
+            "prompt_tokens": 62715,
+            "output_chars": 183,
+            "error": null,
+            "seed": 1001
+          },
+          {
+            "format": "yaml",
+            "dataset": "system_metrics",
+            "ttft": 5.280039400007809,
+            "total_time": 6.078125900006853,
+            "input_tokens": 77693,
+            "prompt_tokens": 77712,
+            "output_chars": 239,
+            "error": null,
+            "seed": 1001
+          },
+          {
+            "format": "toon",
+            "dataset": "system_metrics",
+            "ttft": 4.875781900002039,
+            "total_time": 5.3098909000109416,
+            "input_tokens": 38337,
+            "prompt_tokens": 38357,
+            "output_chars": 190,
+            "error": null,
+            "seed": 1001
+          },
+          {
+            "format": "onto",
+            "dataset": "system_metrics",
+            "ttft": 4.934954000011203,
+            "total_time": 5.738862500002142,
+            "input_tokens": 38736,
+            "prompt_tokens": 38756,
+            "output_chars": 276,
+            "error": null,
+            "seed": 1001
+          }
+        ]
+      },
+      {
+        "run_num": 2,
+        "seed": 1002,
+        "scenarios": [
+          {
+            "format": "json",
+            "dataset": "iot_telemetry",
+            "ttft": 5.113059900002554,
+            "total_time": 5.987515599990729,
+            "input_tokens": 63774,
+            "prompt_tokens": 63793,
+            "output_chars": 219,
+            "error": null,
+            "seed": 1002
+          },
+          {
+            "format": "yaml",
+            "dataset": "iot_telemetry",
+            "ttft": 5.234380299996701,
+            "total_time": 5.911003399989568,
+            "input_tokens": 78772,
+            "prompt_tokens": 78791,
+            "output_chars": 214,
+            "error": null,
+            "seed": 1002
+          },
+          {
+            "format": "toon",
+            "dataset": "iot_telemetry",
+            "ttft": 5.350455699997838,
+            "total_time": 6.105232899994007,
+            "input_tokens": 79699,
+            "prompt_tokens": 79719,
+            "output_chars": 213,
+            "error": null,
+            "seed": 1002
+          },
+          {
+            "format": "onto",
+            "dataset": "iot_telemetry",
+            "ttft": 4.825350300001446,
+            "total_time": 5.2542642000044,
+            "input_tokens": 42813,
+            "prompt_tokens": 42833,
+            "output_chars": 173,
+            "error": null,
+            "seed": 1002
+          },
+          {
+            "format": "json",
+            "dataset": "system_metrics",
+            "ttft": 5.1929578999988735,
+            "total_time": 6.097736600000644,
+            "input_tokens": 62721,
+            "prompt_tokens": 62741,
+            "output_chars": 251,
+            "error": null,
+            "seed": 1002
+          },
+          {
+            "format": "yaml",
+            "dataset": "system_metrics",
+            "ttft": 5.411536300001899,
+            "total_time": 5.938944099994842,
+            "input_tokens": 77719,
+            "prompt_tokens": 77738,
+            "output_chars": 169,
+            "error": null,
+            "seed": 1002
+          },
+          {
+            "format": "toon",
+            "dataset": "system_metrics",
+            "ttft": 4.91247779999685,
+            "total_time": 5.894425099992077,
+            "input_tokens": 38335,
+            "prompt_tokens": 38355,
+            "output_chars": 294,
+            "error": null,
+            "seed": 1002
+          },
+          {
+            "format": "onto",
+            "dataset": "system_metrics",
+            "ttft": 4.8606589999981225,
+            "total_time": 5.306202499996289,
+            "input_tokens": 38762,
+            "prompt_tokens": 38782,
+            "output_chars": 158,
+            "error": null,
+            "seed": 1002
+          }
+        ]
+      },
+      {
+        "run_num": 3,
+        "seed": 1003,
+        "scenarios": [
+          {
+            "format": "json",
+            "dataset": "iot_telemetry",
+            "ttft": 5.187785200003418,
+            "total_time": 6.006943999993382,
+            "input_tokens": 63724,
+            "prompt_tokens": 63743,
+            "output_chars": 244,
+            "error": null,
+            "seed": 1003
+          },
+          {
+            "format": "yaml",
+            "dataset": "iot_telemetry",
+            "ttft": 5.247615899992525,
+            "total_time": 6.21787900000345,
+            "input_tokens": 78722,
+            "prompt_tokens": 78741,
+            "output_chars": 260,
+            "error": null,
+            "seed": 1003
+          },
+          {
+            "format": "toon",
+            "dataset": "iot_telemetry",
+            "ttft": 5.548080599997775,
+            "total_time": 6.063316099985968,
+            "input_tokens": 79669,
+            "prompt_tokens": 79689,
+            "output_chars": 200,
+            "error": null,
+            "seed": 1003
+          },
+          {
+            "format": "onto",
+            "dataset": "iot_telemetry",
+            "ttft": 4.9594016000046395,
+            "total_time": 5.601910600002157,
+            "input_tokens": 42763,
+            "prompt_tokens": 42783,
+            "output_chars": 225,
+            "error": null,
+            "seed": 1003
+          },
+          {
+            "format": "json",
+            "dataset": "system_metrics",
+            "ttft": 5.251348000005237,
+            "total_time": 5.787751399999252,
+            "input_tokens": 62700,
+            "prompt_tokens": 62720,
+            "output_chars": 163,
+            "error": null,
+            "seed": 1003
+          },
+          {
+            "format": "yaml",
+            "dataset": "system_metrics",
+            "ttft": 5.335333499999251,
+            "total_time": 6.68368799999007,
+            "input_tokens": 77698,
+            "prompt_tokens": 77717,
+            "output_chars": 259,
+            "error": null,
+            "seed": 1003
+          },
+          {
+            "format": "toon",
+            "dataset": "system_metrics",
+            "ttft": 4.897830599991721,
+            "total_time": 5.395390599995153,
+            "input_tokens": 38260,
+            "prompt_tokens": 38280,
+            "output_chars": 184,
+            "error": null,
+            "seed": 1003
+          },
+          {
+            "format": "onto",
+            "dataset": "system_metrics",
+            "ttft": 4.958752299993648,
+            "total_time": 5.259251299998141,
+            "input_tokens": 38741,
+            "prompt_tokens": 38761,
+            "output_chars": 113,
+            "error": null,
+            "seed": 1003
+          }
+        ]
+      },
+      {
+        "run_num": 4,
+        "seed": 1004,
+        "scenarios": [
+          {
+            "format": "json",
+            "dataset": "iot_telemetry",
+            "ttft": 5.257376599998679,
+            "total_time": 6.244265200002701,
+            "input_tokens": 63725,
+            "prompt_tokens": 63744,
+            "output_chars": 259,
+            "error": null,
+            "seed": 1004
+          },
+          {
+            "format": "yaml",
+            "dataset": "iot_telemetry",
+            "ttft": 5.344420499997796,
+            "total_time": 5.960086000006413,
+            "input_tokens": 78723,
+            "prompt_tokens": 78742,
+            "output_chars": 255,
+            "error": null,
+            "seed": 1004
+          },
+          {
+            "format": "toon",
+            "dataset": "iot_telemetry",
+            "ttft": 5.39698170000338,
+            "total_time": 6.325693200007663,
+            "input_tokens": 79684,
+            "prompt_tokens": 79704,
+            "output_chars": 133,
+            "error": null,
+            "seed": 1004
+          },
+          {
+            "format": "onto",
+            "dataset": "iot_telemetry",
+            "ttft": 4.874554399997578,
+            "total_time": 5.519608699993114,
+            "input_tokens": 42764,
+            "prompt_tokens": 42784,
+            "output_chars": 231,
+            "error": null,
+            "seed": 1004
+          },
+          {
+            "format": "json",
+            "dataset": "system_metrics",
+            "ttft": 5.278724000003422,
+            "total_time": 5.8900116000004346,
+            "input_tokens": 62683,
+            "prompt_tokens": 62703,
+            "output_chars": 185,
+            "error": null,
+            "seed": 1004
+          },
+          {
+            "format": "yaml",
+            "dataset": "system_metrics",
+            "ttft": 5.195154800007003,
+            "total_time": 5.775950600000215,
+            "input_tokens": 77681,
+            "prompt_tokens": 77700,
+            "output_chars": 164,
+            "error": null,
+            "seed": 1004
+          },
+          {
+            "format": "toon",
+            "dataset": "system_metrics",
+            "ttft": 4.937166299991077,
+            "total_time": 5.566947100000107,
+            "input_tokens": 38321,
+            "prompt_tokens": 38341,
+            "output_chars": 210,
+            "error": null,
+            "seed": 1004
+          },
+          {
+            "format": "onto",
+            "dataset": "system_metrics",
+            "ttft": 4.921539399991161,
+            "total_time": 5.749174900003709,
+            "input_tokens": 38724,
+            "prompt_tokens": 38744,
+            "output_chars": 256,
+            "error": null,
+            "seed": 1004
+          }
+        ]
+      }
+    ]
+  },
+  "summary": {
+    "by_scenario": {
+      "iot_telemetry/json": {
+        "n": 5,
+        "avg_ttft": 5.216218720001052,
+        "min_ttft": 5.113059900002554,
+        "max_ttft": 5.381495800000266,
+        "avg_total": 5.981751499997335,
+        "avg_tokens": 63746.4
+      },
+      "iot_telemetry/yaml": {
+        "n": 5,
+        "avg_ttft": 5.284900499996729,
+        "min_ttft": 5.223123799994937,
+        "max_ttft": 5.374962000001688,
+        "avg_total": 5.981806459999643,
+        "avg_tokens": 78744.4
+      },
+      "iot_telemetry/toon": {
+        "n": 5,
+        "avg_ttft": 5.415279479997116,
+        "min_ttft": 5.313412699993933,
+        "max_ttft": 5.548080599997775,
+        "avg_total": 6.251987459996599,
+        "avg_tokens": 79689.8
+      },
+      "iot_telemetry/onto": {
+        "n": 5,
+        "avg_ttft": 4.89728965999966,
+        "min_ttft": 4.8218364999920595,
+        "max_ttft": 5.005305500002578,
+        "avg_total": 5.42621489999874,
+        "avg_tokens": 42785.4
+      },
+      "system_metrics/json": {
+        "n": 5,
+        "avg_ttft": 5.2197951000038305,
+        "min_ttft": 5.157267200003844,
+        "max_ttft": 5.278724000003422,
+        "avg_total": 5.889953020002577,
+        "avg_tokens": 62694.6
+      },
+      "system_metrics/yaml": {
+        "n": 5,
+        "avg_ttft": 5.31870374000282,
+        "min_ttft": 5.195154800007003,
+        "max_ttft": 5.411536300001899,
+        "avg_total": 6.203588239999954,
+        "avg_tokens": 77692.6
+      },
+      "system_metrics/toon": {
+        "n": 5,
+        "avg_ttft": 4.908655079995515,
+        "min_ttft": 4.875781900002039,
+        "max_ttft": 4.937166299991077,
+        "avg_total": 5.525812899999437,
+        "avg_tokens": 38318.6
+      },
+      "system_metrics/onto": {
+        "n": 5,
+        "avg_ttft": 4.916752160000033,
+        "min_ttft": 4.8606589999981225,
+        "max_ttft": 4.958752299993648,
+        "avg_total": 5.48115140000009,
+        "avg_tokens": 38735.6
+      }
+    },
+    "paired_deltas": {
+      "iot_telemetry/toon_vs_json": {
+        "ttft_reduction_pct": -3.816188903904383,
+        "total_reduction_pct": -4.517672791980476,
+        "token_reduction_pct": -25.010667269053634
+      },
+      "iot_telemetry/onto_vs_json": {
+        "ttft_reduction_pct": 6.1141811170319915,
+        "total_reduction_pct": 9.287189546386909,
+        "token_reduction_pct": 32.88185685779903
+      },
+      "system_metrics/toon_vs_json": {
+        "ttft_reduction_pct": 5.960770759145073,
+        "total_reduction_pct": 6.182394303766115,
+        "token_reduction_pct": 38.88054154584286
+      },
+      "system_metrics/onto_vs_json": {
+        "ttft_reduction_pct": 5.805648194956459,
+        "total_reduction_pct": 6.940660114166897,
+        "token_reduction_pct": 38.215412491665944
+      }
+    }
+  }
+}

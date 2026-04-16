@@ -1,0 +1,29 @@
+{
+  "dataset": "log_entries",
+  "records": 100,
+  "timestamp": "2026-04-16T18:47:31.305722",
+  "formats": {
+    "json": {
+      "tokens": 6565,
+      "chars": 19612
+    },
+    "yaml": {
+      "tokens": 6164,
+      "chars": 17912
+    },
+    "toon": {
+      "tokens": 3558,
+      "chars": 9216
+    },
+    "onto": {
+      "tokens": 3495,
+      "chars": 9028
+    }
+  },
+  "reduction_vs_json": {
+    "yaml": "6.1%",
+    "toon": "45.8%",
+    "onto": "46.8%"
+  },
+  "onto_vs_toon": "1.8%"
+}

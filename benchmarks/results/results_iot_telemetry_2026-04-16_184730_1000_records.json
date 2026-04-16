@@ -1,0 +1,29 @@
+{
+  "dataset": "iot_telemetry",
+  "records": 1000,
+  "timestamp": "2026-04-16T18:47:30.511801",
+  "formats": {
+    "json": {
+      "tokens": 79774,
+      "chars": 199661
+    },
+    "yaml": {
+      "tokens": 78772,
+      "chars": 189661
+    },
+    "toon": {
+      "tokens": 79713,
+      "chars": 211606
+    },
+    "onto": {
+      "tokens": 42813,
+      "chars": 75811
+    }
+  },
+  "reduction_vs_json": {
+    "yaml": "1.3%",
+    "toon": "0.1%",
+    "onto": "46.3%"
+  },
+  "onto_vs_toon": "46.3%"
+}
