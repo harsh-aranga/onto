@@ -569,11 +569,11 @@ For workloads where structured datasets are directly embedded in prompts at scal
 
 \textbf{Prompt compression.} LLMLingua~\citep{jiang2023llmlingua} compresses prompts by removing low-information tokens guided by perplexity scores from a small language model. LLMLingua-2~\citep{pan2024llmlingua2} improves on this with data-distilled compression. These methods are lossy and task-agnostic---they cannot exploit the regularity of structured data. \onto is complementary: it provides lossless structural compression before any text-level optimization.
 
-\textbf{Context window optimization.} Retrieval-augmented generation~\citep{lewis2020rag} reduces context requirements by retrieving relevant passages dynamically. Context packing~\citep{shi2023context} arranges multiple examples efficiently within fixed windows. Structured prompting~\citep{hao2022structured} organizes information hierarchically for better comprehension. These techniques address what to include; \onto addresses how to serialize what is included.
+\textbf{Context window optimization.} Retrieval-augmented generation~\citep{lewis2020rag} reduces context requirements by retrieving relevant passages dynamically. Batch prompting~\citep{cheng2023batch} reduces per-query token overhead by processing multiple examples in a single inference call. Structured prompting~\citep{hao2022structured} organizes information hierarchically for better comprehension. These techniques address what to include; \onto addresses how to serialize what is included.
 
 \textbf{Schema-aware serialization.} Schema-aware JSON optimization approaches such as TOON~\citep{toon2024} achieve compression through key shortening and structure normalization. Such methods may perform well on flat data but provide limited benefit on deeply nested structures. \onto's columnar design addresses both cases through structural redesign rather than optimization of the existing format.
 
-\textbf{Token efficiency research.} Recent work has examined tokenization efficiency across languages~\citep{petrov2023language} and proposed tokenizer-aware prompting~\citep{sun2023tokenizer}. These efforts focus on natural language; \onto addresses structured data specifically.
+\textbf{Token efficiency research.} Recent work has examined tokenization efficiency across languages~\citep{petrov2023language} and proposed sentence-level prompt compression that preserves semantic coherence under token reduction~\citep{liskavets2024prompt}. These efforts focus on natural language; \onto addresses structured data specifically.
 
 % ============================================================================
 % 9. FUTURE WORK
@@ -661,20 +661,20 @@ Dziri, N., et al. (2023).
 Faith and Fate: Limits of Transformers on Compositionality.
 \emph{NeurIPS 2023}.
 
-\bibitem[Shi et al.(2023)]{shi2023context}
-Shi, W., et al. (2023).
-Context Packing for Efficient Training of Large Language Models.
-\emph{arXiv:2310.19462}.
+\bibitem[Cheng et al.(2023)]{cheng2023batch}
+Cheng, Z., Kasai, J., and Yu, T. (2023).
+Batch Prompting: Efficient Inference with Large Language Model APIs.
+\emph{arXiv:2301.08721}.
 
 \bibitem[Petrov et al.(2023)]{petrov2023language}
 Petrov, A., et al. (2023).
 Language Model Tokenizers Introduce Unfairness Between Languages.
 \emph{arXiv:2305.15425}.
 
-\bibitem[Sun et al.(2023)]{sun2023tokenizer}
-Sun, T., et al. (2023).
-Tokenizer-Aware Prompt Engineering for Black-Box Language Models.
-\emph{arXiv:2310.17049}.
+\bibitem[Liskavets et al.(2024)]{liskavets2024prompt}
+Liskavets, B., Ushakov, M., Roy, S., Klibanov, M., Etemad, A., and Luke, S. (2024).
+Prompt Compression with Context-Aware Sentence Encoding for Fast and Improved LLM Inference.
+\emph{arXiv:2409.01227}.
 
 \bibitem[TOON(2024)]{toon2024}
 TOON: Schema-Aware JSON Optimization.
