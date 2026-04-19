@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+title: "ONTO: A Token-Efficient Columnar Notation for LLM Input Optimization"
+message: "If you use this software or the ONTO format, please cite the paper below."
+type: software
+authors:
+  - given-names: Harshavardhanan
+    family-names: Deekeswar
+    email: harsh@pragmaticbyharsh.com
+    orcid: "https://orcid.org/0009-0000-0319-083X"
+repository-code: "https://github.com/harsh-aranga/onto"
+url: "https://github.com/harsh-aranga/onto"
+license: MIT
+keywords:
+  - large-language-models
+  - token-optimization
+  - data-serialization
+  - llm-infrastructure
+  - columnar-notation
+preferred-citation:
+  type: article
+  title: "ONTO: A Token-Efficient Columnar Notation for LLM Input Optimization"
+  authors:
+    - given-names: Harshavardhanan
+      family-names: Deekeswar
+      email: harsh@pragmaticbyharsh.com
+      orcid: "https://orcid.org/0009-0000-0319-083X"
+  year: 2026
+  month: 4
+  # Once arXiv ID is live, add:
+  # journal: "arXiv preprint"
+  # url: "https://arxiv.org/abs/XXXX.XXXXX"

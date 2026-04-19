@@ -1,0 +1,6 @@
+[5]{timestamp,level,service,message,request_id,duration_ms,status_code}:
+"2025-01-01T00:00:00",INFO,auth-service,Retrying failed request,req-356787,458,200
+"2025-01-01T00:00:00.100000",INFO,auth-service,Database query completed,req-191161,1210,200
+"2025-01-01T00:00:00.200000",WARN,auth-service,Request processed successfully,req-198246,448,400
+"2025-01-01T00:00:00.300000",INFO,payment-service,External API call completed,req-127824,1150,200
+"2025-01-01T00:00:00.400000",INFO,payment-service,Authentication successful,req-331148,920,200

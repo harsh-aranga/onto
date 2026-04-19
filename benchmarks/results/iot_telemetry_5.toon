@@ -1,0 +1,46 @@
+[5]:
+  - device_id: sensor-2824
+    timestamp: "2025-01-01T00:00:00"
+    temperature: 18.35
+    humidity: 43.75
+    pressure: 998.93
+    battery_level: 23
+    location:
+        lat: 40.564088
+        lon: -75.930124
+  - device_id: sensor-2424
+    timestamp: "2025-01-01T00:05:00"
+    temperature: 26.27
+    humidity: 31.59
+    pressure: 993.75
+    battery_level: 39
+    location:
+        lat: 36.623172
+        lon: -123.540522
+  - device_id: sensor-4257
+    timestamp: "2025-01-01T00:10:00"
+    temperature: 28.02
+    humidity: 65.07
+    pressure: 1006.78
+    battery_level: 67
+    location:
+        lat: 38.553111
+        lon: -80.481325
+  - device_id: sensor-1106
+    timestamp: "2025-01-01T00:15:00"
+    temperature: 28.62
+    humidity: 37.98
+    pressure: 1006.9
+    battery_level: 45
+    location:
+        lat: 28.576028
+        lon: -72.353281
+  - device_id: sensor-6514
+    timestamp: "2025-01-01T00:20:00"
+    temperature: 19.43
+    humidity: 49
+    pressure: 1004.36
+    battery_level: 54
+    location:
+        lat: 38.885699
+        lon: -80.607945
