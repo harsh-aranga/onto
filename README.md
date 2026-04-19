@@ -5,6 +5,7 @@ A columnar, human-readable data format that reduces LLM token consumption by 46-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![arXiv](https://img.shields.io/badge/arXiv-pending-b31b1b.svg)](https://arxiv.org)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19650416.svg)](https://doi.org/10.5281/zenodo.19650416)
 
 ## Why ONTO?
 
@@ -159,16 +160,22 @@ Full benchmark results available in `benchmarks/results/`.
 
 ## Citation
 
-Paper forthcoming on arXiv. BibTeX will be added upon publication.
+If you use ONTO in your research, please cite:
 
 ```bibtex
-@article{deekeswar2026onto,
-  title={ONTO: Object Notation for Token Optimization in LLM Workflows},
-  author={Deekeswar, Harshavardhanan},
-  journal={arXiv preprint arXiv:26XX.XXXXX},
-  year={2026}
+@software{deekeswar2026onto,
+  author       = {Deekeswar, Harshavardhanan},
+  title        = {{ONTO: A Token-Efficient Columnar Notation for
+                   LLM Input Optimization}},
+  year         = 2026,
+  publisher    = {Zenodo},
+  version      = {v1.0.0},
+  doi          = {10.5281/zenodo.19650416},
+  url          = {https://doi.org/10.5281/zenodo.19650416}
 }
 ```
+
+The accompanying research paper is forthcoming on arXiv. BibTeX will be updated upon publication.
 
 ## License
 
@@ -176,8 +183,8 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 ## Author
 
-**Harshavardhanan Deekeswar**  
-[GitHub](https://github.com/harsh-aranga) · [Email](mailto:harsh@pragmaticbyharsh.com)
+**Harshavardhanan Deekeswar**
+[ORCID: 0009-0000-0319-083X](https://orcid.org/0009-0000-0319-083X) · [GitHub](https://github.com/harsh-aranga) · [Email](mailto:harsh@pragmaticbyharsh.com)
 
 ---
 
