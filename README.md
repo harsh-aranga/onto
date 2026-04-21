@@ -5,7 +5,7 @@ A columnar, human-readable data format that reduces LLM token consumption by 46-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![arXiv](https://img.shields.io/badge/arXiv-2604.17512-b31b1b.svg)](https://arxiv.org/abs/2604.17512)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19650416.svg)](https://doi.org/10.5281/zenodo.19650416)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19650416-blue.svg)](https://doi.org/10.5281/zenodo.19650416)
 
 ## Why ONTO?
 
