@@ -4,7 +4,7 @@ A columnar, human-readable data format that reduces LLM token consumption by 46-
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![arXiv](https://img.shields.io/badge/arXiv-pending-b31b1b.svg)](https://arxiv.org)
+[![arXiv](https://img.shields.io/badge/arXiv-2604.17512-b31b1b.svg)](https://arxiv.org/abs/2604.17512)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19650416.svg)](https://doi.org/10.5281/zenodo.19650416)
 
 ## Why ONTO?
@@ -160,16 +160,29 @@ Full benchmark results available in `benchmarks/results/`.
 
 ## Citation
 
-If you use ONTO in your research, please cite:
+If you use ONTO in your research, please cite the paper:
 
 ```bibtex
-@software{deekeswar2026onto,
+@article{deekeswar2026onto-paper,
+  author       = {Deekeswar, Harshavardhanan},
+  title        = {{ONTO: A Token-Efficient Columnar Notation for
+                   LLM Input Optimization}},
+  journal      = {arXiv preprint arXiv:2604.17512},
+  year         = {2026},
+  url          = {https://arxiv.org/abs/2604.17512}
+}
+```
+
+If you use the software implementation, please cite the release:
+
+```bibtex
+@software{deekeswar2026onto-software,
   author       = {Deekeswar, Harshavardhanan},
   title        = {{ONTO: A Token-Efficient Columnar Notation for
                    LLM Input Optimization}},
   year         = 2026,
   publisher    = {Zenodo},
-  version      = {v1.0.0},
+  version      = {v1.0.2},
   doi          = {10.5281/zenodo.19650416},
   url          = {https://doi.org/10.5281/zenodo.19650416}
 }

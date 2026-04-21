@@ -16,6 +16,13 @@ keywords:
   - data-serialization
   - llm-infrastructure
   - columnar-notation
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.19650416
+    description: "Software DOI (Zenodo)"
+  - type: other
+    value: "arXiv:2604.17512"
+    description: "Research paper (arXiv)"
 preferred-citation:
   type: article
   title: "ONTO: A Token-Efficient Columnar Notation for LLM Input Optimization"
@@ -26,6 +33,5 @@ preferred-citation:
       orcid: "https://orcid.org/0009-0000-0319-083X"
   year: 2026
   month: 4
-  # Once arXiv ID is live, add:
-  # journal: "arXiv preprint"
-  # url: "https://arxiv.org/abs/XXXX.XXXXX"
+  journal: "arXiv preprint"
+  url: "https://arxiv.org/abs/2604.17512"
